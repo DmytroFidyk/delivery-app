@@ -29,7 +29,7 @@ const Cart = () => {
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(order)
                 };
-                fetch('http://localhost:7000/orders', requestOptions)
+                fetch('https://delivery-app-self.vercel.app/api/orders', requestOptions)
                     .then(response => response.json())
                     .then(json => console.log(json));
             }
