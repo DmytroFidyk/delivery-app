@@ -1,0 +1,36 @@
+.button {
+    background-color: #F3DE2C;
+    font-size: 18px;
+    border: none;
+    font-weight: bold;
+    padding: 24px 12px;
+    width: 240px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 18px;
+    font-weight: bold;
+    align-items: center;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.card {
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    margin-right: 40px;
+}
+

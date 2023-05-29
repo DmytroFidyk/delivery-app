@@ -1,0 +1,51 @@
+.button {
+    font-size: 16px;
+    border: none;
+    font-weight: bold;
+    padding: 24px 10px;
+    width: 240px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: red;
+    background-color: rgb(255, 205, 205);
+    border: red .5px solid;
+    box-sizing: border-box;
+}
+
+.info {
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: normal;
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    margin-right: 40px;
+    width: 50%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.image {
+    margin-right: 20px;
+}
+
+.cart {
+    width: 100%;
+}

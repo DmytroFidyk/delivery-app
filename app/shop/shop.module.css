@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    padding: 0px 40px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.column {
+    width: 70%;
+}
+
+.column:first-child {
+    width: 20%;
+}
+
+.shops {
+    display: flex;
+    flex-direction: column;
+    margin-right: 40px;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    color: black;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 240px;
+}
