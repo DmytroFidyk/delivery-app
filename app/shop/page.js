@@ -14,7 +14,7 @@ const Shop = () => {
     const [ selectedShopId, setSelectedShopId ] = useState(1);
 
     const [ shops, setShops ] = useState([]);
-    const url = 'https://delivery-app-self.vercel.app/api/';
+    const url = 'https://localhost:7000/';
  
     useEffect(() => {
         fetch(url + `products?shopId=${selectedShopId}`)

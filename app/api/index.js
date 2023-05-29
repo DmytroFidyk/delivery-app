@@ -6,7 +6,7 @@ const app = express();
 const port = 7000;
 
 const corsOptions = {
-    origin: 'https://delivery-app-self.vercel.app/',
+    origin: 'https://localhost:3000/',
     optionsSuccessStatus: 200
 };
 
