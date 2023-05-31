@@ -29,7 +29,7 @@ const Cart = () => {
                     headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(order)
                 };
-                fetch('https://localhost:7000/orders', requestOptions)
+                fetch('https://delivery-app-server-dg2d.onrender.com/orders', requestOptions)
                     .then(response => response.json())
                     .then(json => console.log(json));
             }
