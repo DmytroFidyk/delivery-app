@@ -4,6 +4,8 @@ import styles from './cart.module.css';
 import SelectedProduct from '../components/SelectedProduct';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { removeFromCart } from '../features/shoppingCart/shoppingCartSlice';
 
 const Cart = () => {
     const [ order, setOrder ] = useState(null);
@@ -12,14 +14,8 @@ const Cart = () => {
     const [ email, setEmail ] = useState('');
     const [ address, setAddress ] = useState('');
 
-    const [productsInCart, setProductsInCart] = useState(useSelector((state) => state.productsInCart.value));
-
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            let inCart = JSON.parse(window.localStorage.getItem('products-in-cart')) || [];
-            setProductsInCart(inCart);
-        }
-    }, []);
+    let productsInCart = useSelector((state) => state.productsInCart.value);
+    const dispatch = useDispatch();
 
     useEffect(() => {     
             if (order !== null) {
@@ -34,12 +30,12 @@ const Cart = () => {
                     .then(json => console.log(json));
             }
     }, [order]);
-
+    //http://localhost:7000/orders
     let productsList = [];
 
     if (productsInCart.length > 0) {
         productsList = productsInCart.map(item => {
-            return <SelectedProduct key={item.title} id={item.id} title={item.title} imageName={item.imageName} price={item.price}/>
+            return <SelectedProduct key={item.title} id={item.id} title={item.title} imageName={item.imageName} price={item.price} count={item.count}/>
         });
     }
 
@@ -55,7 +51,6 @@ const Cart = () => {
         setPhone('');
         setEmail('');
         setAddress('');
-        setProductsInCart([]);
     };
 
     const orderData = {
@@ -81,6 +76,12 @@ const Cart = () => {
     const changeHandlerAddress = (event) => {
         setAddress(event.target.value);
     };
+    let textMessage = '';
+    if (productsInCart.length > 0) {
+        textMessage = <div className={styles.title}>Всього до оплати: {total} ₴</div>;
+    } else {
+        textMessage = <div>У вашому кошику порожньо</div>;
+    }
 
     return (
         <>
@@ -88,19 +89,23 @@ const Cart = () => {
             <div className={styles.container}>
                 <div className={styles.column}>                   
                     <div className={styles.cart}>
-                        <div className={styles.title}><h3>Кошик</h3></div>
+                        <h3 className={styles.title}>Кошик</h3>
                         {productsList}
-                        {productsInCart.length > 0 ? <div className={styles.title}><h3>Всього до оплати: {total} ₴</h3></div> : <div>У вашому кошику порожньо</div>}
+                        <div>{textMessage}</div>
                     </div>
                 </div>
                 <div className={styles.column}>
                     <div className={styles.form}>
-                        <div className={styles.title}><h3>Оформлення замовлення</h3></div>
+                        <div className={styles.title}>Оформлення замовлення</div>
                         <input className={styles.input} type="text" placeholder="Ім'я та прізвище" onChange={changeHandlerCustomer} value={customerName}/>
                         <input className={styles.input} type="text" placeholder="Номер телефону" onChange={changeHandlerPhone} value={phone}/>
                         <input className={styles.input} type="text" placeholder="Е-пошта" onChange={changeHandlerEmail} value={email}/>
                         <input className={styles.input} type="text" placeholder="Адреса" onChange={changeHandlerAddress} value={address}/>
-                        <button className={styles.button} onClick={() => makeOrder(orderData)}>Замовити</button>
+                        <button className={styles.button} onClick={() => {
+                            makeOrder(orderData); orderData.products.forEach(element => {
+                                dispatch(removeFromCart(element));
+                            });
+                            }}>Замовити</button>
                     </div>
                     
                 </div>

@@ -14,8 +14,8 @@ const Shop = () => {
     const [ selectedShopId, setSelectedShopId ] = useState(1);
 
     const [ shops, setShops ] = useState([]);
+    //const url = 'http://localhost:7000/';
     const url = 'https://delivery-app-server-dg2d.onrender.com/';
- 
     useEffect(() => {
         fetch(url + `products?shopId=${selectedShopId}`)
             .then(response => response.json())
@@ -49,7 +49,8 @@ const Shop = () => {
             return <ShopCard key={item.id} shopId={item.id} name={item.content.name} setSelectedShopId={setSelectedShopId}/>}
         );
     }
-
+    let content = '';
+    
     return (
         <>
             <Header/>     
