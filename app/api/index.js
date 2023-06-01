@@ -3,9 +3,9 @@ const app = express();
 
 const cors = require('cors');
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://delivery-app-self.vercel.app',
     optionsSuccessStatus: 200
-}; //'https://delivery-app-self.vercel.app'
+}; //'http://localhost:3000'
 app.use(cors(corsOptions));
 
 const bodyParser = require('body-parser');
@@ -59,7 +59,6 @@ app.get('/products', cors(corsOptions), async (req, res) => {
 });
 
 app.get('/shops', cors(corsOptions), async (req, res) => {
-    //const getShops = async (req, res) => {
     const shopsRef = db.collection('shops');
     const snapshot = await shopsRef.get();
     let shops = [];
@@ -85,5 +84,3 @@ app.post('/orders', cors(corsOptions), async (req, res) => {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
-
-//getShops();
