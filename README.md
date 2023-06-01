@@ -2,6 +2,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+You can see live version here: [https://delivery-app-self.vercel.app/]
+
+For starting on local machine:
 First, run the development server:
 
 ```bash
